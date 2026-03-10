@@ -46,4 +46,3 @@ settings = Settings()
 # Print settings on startup (helpful for debugging)
 if __name__ == "__main__":
     print(f"Settings loaded: {settings}")
-EOF
