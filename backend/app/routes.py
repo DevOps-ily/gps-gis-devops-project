@@ -163,4 +163,3 @@ def delete_capital(capital_id: int, db: Session = Depends(get_db)):
     
     db.delete(db_capital)
     db.commit()
-EOF

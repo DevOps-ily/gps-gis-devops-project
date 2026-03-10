@@ -55,4 +55,3 @@ def drop_db():
     from app.models import Base
     Base.metadata.drop_all(bind=engine)
     print("⚠️  Database tables dropped!")
-EOF

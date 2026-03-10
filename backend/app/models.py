@@ -51,4 +51,3 @@ class Capital(Base):
             "remarks": self.remarks,
             "created_at": self.created_at.isoformat() if self.created_at else None,
         }
-EOF
