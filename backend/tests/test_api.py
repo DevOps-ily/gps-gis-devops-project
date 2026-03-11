@@ -9,8 +9,8 @@ from sqlalchemy.orm import sessionmaker
 
 # Import our app
 from app.main import app
-from app.database import get_db, Base
-from app.models import Capital
+from app.database import get_db
+from app.models import Base
 
 # Create in-memory test database
 SQLALCHEMY_TEST_DATABASE_URL = "sqlite:///./test.db"
