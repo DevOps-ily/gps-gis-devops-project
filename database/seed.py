@@ -64,28 +64,28 @@ def seed_data():
             "latitude": 4.1755,
             "longitude": 73.5093,
             "remarks": "Asia, Island, Indian Ocean"
-        }
+        },
         {
             "name": "Tokyo",
             "country": "Japan",
             "latitude": 35.6762,
             "longitude": 139.6503,
             "remarks": "Asia, Mainland, Island Nation"
-        }
+        },
         {
             "name": "Oslo",
             "country": "Norway",
             "latitude": 59.9139,
             "longitude": 10.7522,
             "remarks": "Europe, Mainland"
-        }
+        },
         {
             "name": "Canberra",
             "country": "Australia",
             "latitude": -35.2809,
             "longitude": 149.1300,
             "remarks": "Oceania, Mainland"
-        }
+        },
         {
             "name": "PointNo677",
             "country": "WORLD",
