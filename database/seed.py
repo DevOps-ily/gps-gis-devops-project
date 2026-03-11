@@ -23,7 +23,7 @@ def seed_data():
     
     # Check if data already exists
     existing_capitals = db.query(Capital).count()
-    if existing_capitals > 0:
+    if existing_capitals >= 999:
         print(f"⚠️  Database already has {existing_capitals} capitals. Skipping seed.")
         db.close()
         return
