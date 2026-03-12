@@ -19,7 +19,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Docker images...'
-                sh 'docker-compose -f docker/docker-compose.yml build'
+                sh '''
+                    docker build -t gps-backend ./backend
+                    docker build -t gps-frontend ./frontend
+                '''
             }
         }
     }
