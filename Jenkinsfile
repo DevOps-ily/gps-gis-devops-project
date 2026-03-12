@@ -4,14 +4,17 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Code checked out from GitHub!'
-                sh 'find . -name "requirements.txt"'
+                sh 'pwd && ls -la && ls -la backend/'
             }
         }
         stage('Test') {
             steps {
                 echo 'Running pytest tests...'
                 sh '''
-                    docker run --rm -v $(pwd)/backend:/app -w /app python:3.11-slim sh -c "ls -la /app && pip install -r /app/requirements.txt -q && pip install pytest -q && PYTHONPATH=/app pytest tests/ -v"
+                    BACKEND_PATH=$(pwd)/backend
+                    echo "Backend path: $BACKEND_PATH"
+                    ls -la $BACKEND_PATH
+                    docker run --rm -v $BACKEND_PATH:/app -w /app python:3.11-slim sh -c "ls -la && pip install -r requirements.txt -q && pip install pytest -q && PYTHONPATH=. pytest tests/ -v"
                 '''
             }
         }
