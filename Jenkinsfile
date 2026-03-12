@@ -10,10 +10,11 @@ pipeline {
             steps {
                 echo 'Running pytest tests...'
                 sh '''
-                    cd backend
-                    pip3 install -r requirements.txt --quiet --break-system-packages
-                    pip3 install pytest --quiet --break-system-packages
-                    PYTHONPATH=. pytest tests/ -v
+                    docker run --rm \
+                        -v $(pwd)/backend:/app \
+                        -w /app \
+                        python:3.11-slim \
+                        sh -c "pip install -r requirements.txt -q && pip install pytest -q && PYTHONPATH=. pytest tests/ -v"
                 '''
             }
         }
