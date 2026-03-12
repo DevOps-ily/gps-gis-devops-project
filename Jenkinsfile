@@ -10,11 +10,7 @@ pipeline {
             steps {
                 echo 'Running pytest tests...'
                 sh '''
-                    docker run --rm \
-                        -v $(pwd)/backend:/app \
-                        -w /app \
-                        python:3.11-slim \
-                        sh -c "pip install -r requirements.txt -q && pip install pytest -q && PYTHONPATH=. pytest tests/ -v"
+                    docker run --rm -v $(pwd)/backend:/app -w /app python:3.11-slim sh -c "pip install -r /app/requirements.txt -q && pip install pytest -q && PYTHONPATH=/app pytest tests/ -v"
                 '''
             }
         }
