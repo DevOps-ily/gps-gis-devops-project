@@ -4,13 +4,14 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Code checked out from GitHub!'
+                sh 'find . -name "requirements.txt"'
             }
         }
         stage('Test') {
             steps {
                 echo 'Running pytest tests...'
                 sh '''
-                    docker run --rm -v $(pwd)/backend:/app -w /app python:3.11-slim sh -c "pip install -r /app/requirements.txt -q && pip install pytest -q && PYTHONPATH=/app pytest tests/ -v"
+                    docker run --rm -v $(pwd)/backend:/app -w /app python:3.11-slim sh -c "ls -la /app && pip install -r /app/requirements.txt -q && pip install pytest -q && PYTHONPATH=/app pytest tests/ -v"
                 '''
             }
         }
