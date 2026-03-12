@@ -11,8 +11,8 @@ pipeline {
                 echo 'Running pytest tests...'
                 sh '''
                     cd backend
-                    pip install -r requirements.txt --quiet
-                    pip install pytest --quiet
+                    pip3 install -r requirements.txt --quiet --break-system-packages
+                    pip3 install pytest --quiet --break-system-packages
                     PYTHONPATH=. pytest tests/ -v
                 '''
             }
