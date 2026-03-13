@@ -1,0 +1,15 @@
+kubectl exec -it deployment/backend -- python -c "
+import sys
+sys.path.insert(0, '/app')
+from app.database import SessionLocal, init_db
+from app.models import Capital
+init_db()
+db = SessionLocal()
+db.add(Capital(name='Paris', country='France', latitude=48.8566, longitude=2.3522, remarks='Europe'))
+db.add(Capital(name='Tokyo', country='Japan', latitude=35.6762, longitude=139.6503, remarks='Asia'))
+db.add(Capital(name='Oslo', country='Norway', latitude=59.9139, longitude=10.7522, remarks='Europe'))
+db.add(Capital(name='Canberra', country='Australia', latitude=-35.2809, longitude=149.1300, remarks='Oceania'))
+db.add(Capital(name='Prague', country='Czechia', latitude=50.0755, longitude=14.4378, remarks='Europe'))
+db.commit()
+print('Done!')
+"
