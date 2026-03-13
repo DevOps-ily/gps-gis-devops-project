@@ -17,4 +17,7 @@ spec:
         image: gps-backend:latest
         imagePullPolicy: Never
         ports:
-          - containerPort: 8000
+          - containerPort: 5000
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://postgres:postgres@dv:5432/gps_gis_db"
