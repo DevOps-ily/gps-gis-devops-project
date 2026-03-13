@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gps-frontend:latest
-        imagePullPolicy: Never
+        image: 521024928143.dkr.ecr.eu-north-1.amazonaws.com/gps-frontend:latest
+        imagePullPolicy: Always
         ports:
           - containerPort: 5173
