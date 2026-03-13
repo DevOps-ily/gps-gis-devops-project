@@ -13,3 +13,5 @@ db.add(Capital(name='Prague', country='Czechia', latitude=50.0755, longitude=14.
 db.commit()
 print('Done!')
 "
+
+kubectl exec -it deployment/backend -- python /app/database/seed_missing.py
