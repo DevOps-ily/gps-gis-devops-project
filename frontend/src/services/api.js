@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'http://192.168.49.2:30319';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-  },
+  }
 });
 
 export const getCapitals = async () => {
@@ -15,7 +15,7 @@ export const getCapitals = async () => {
 };
 
 export const getCapital = async (id) => {
-  const response = await api.get(`/api/capitals/${id}`);
+  const response = await api.get('/api/capitals/${id}');
   return response.data;
 };
 
