@@ -20,4 +20,4 @@ spec:
           - containerPort: 5000
         env:
         - name: DATABASE_URL
-          value: "postgresql://postgres:postgres@dv:5432/gps_gis_db"
+          value: "postgresql://postgres:postgres@db:5432/gps_gis_db"
