@@ -16,3 +16,7 @@ Username: admin
 Password: HXia0EIc1RJrqiNbw4Un4A0dYSd4nN49OUNXIWv2dUWQ
 
 Tell me if it works! 
+
+echo "YWRtaW4=" | base64 --decode
+echo ""
+echo "SFhpa0VJc0cxUlJzcWlOYmw4UW5BY0dZU2R4bk40OUNYSVcydkNVWQ==" | base64 --decode
