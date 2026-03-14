@@ -26,6 +26,18 @@ A full-stack GPS/GIS application tracking capital cities and geographical points
 | Cloud | AWS EKS + ECR |
 | Infrastructure as Code | Terraform |
 
+## 📊 Monitoring
+
+Prometheus and Grafana deployed via Helm into a dedicated `monitoring` namespace.
+Access Grafana dashboard:
+```bash
+kubectl port-forward -n monitoring svc/monitoring-grafana 3000:80
+# Open http://localhost:3000
+```
+
+Commit with:
+
+
 ## 🏗️ Architecture
 ```
 Developer → GitHub → Jenkins CI/CD → Docker Images → Kubernetes → AWS EKS
