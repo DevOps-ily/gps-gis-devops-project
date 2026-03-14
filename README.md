@@ -14,6 +14,18 @@ A full-stack GPS/GIS application tracking capital cities and geographical points
 - Alphabetical sort and real-time search across all tracked points
 - Any geographical point on Earth can be marked, tracked, and given plain-language remarks — demonstrated by a dam in Iran included as a real-world example
 
+## 📸 Screenshots
+
+### Application Map
+![App Map](screenshots/sample_map_prosess_final_07.png)
+
+### Grafana Monitoring Dashboard
+![Grafana](screenshots/grafana-dashboard.png)
+
+### AWS Deployment
+![AWS](screenshots/sample_aws_01.png)
+
+
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
