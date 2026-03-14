@@ -26,3 +26,35 @@ print('Done!')
 EOF
 kubectl cp /tmp/fix_db.py backend-68d646bb84-zp97g:/app/fix_db.py
 kubectl exec -it backend-68d646bb84-zp97g -- python /app/fix_db.py
+
+
+    db: Session = Depends(get_db)):
+    """
+    Update an existing capital.
+    
+    Args:
+        capital_id: ID of capital to update
+        capital: New capital data
+        
+    Returns:
+        Updated capital
+        
+    Raises:
+        HTTPException: 404 if capital not found
+    """
+    db_capital = db.query(Capital).filter(Capital.id == capital_id).first()
+    if not db_capital:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Capital with ID {capital_id} not found"
+        )
+    
+    db_capital.name = capital.name
+    db_capital.country = capital.country
+    db_capital.latitude = capital.latitude
+    db_capital.longitude = capital.longitude
+    db_capital.remarks = capital.remarks
+    
+    db.commit()
+    db.refresh(db_capital)
+    return db_capital

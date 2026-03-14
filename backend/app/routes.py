@@ -21,12 +21,13 @@ from pydantic import BaseModel, Field
 from datetime import datetime
 
 class CapitalCreate(BaseModel):
-    """Schema for creating a new capital."""
-    name: str = Field(..., min_length=1, max_length=100)
-    country: str = Field(..., min_length=1, max_length=100)
-    latitude: float = Field(..., ge=-90, le=90)
-    longitude: float = Field(..., ge=-180, le=180)
+    """Schema for updating a capital - all fields optional."""
+    name: str = None
+    country: str = None
+    latitude: float = None
+    longitude: float = None
     remarks: str = None
+    active: bool = None
 
 class CapitalResponse(BaseModel):
     """Schema for capital response."""
@@ -37,6 +38,7 @@ class CapitalResponse(BaseModel):
     longitude: float
     remarks: str = None
     created_at: datetime
+    active: bool = true
     
     class Config:
         from_attributes = True  # For SQLAlchemy compatibility
@@ -112,36 +114,22 @@ def create_capital(capital: CapitalCreate, db: Session = Depends(get_db)):
     return db_capital
 
 @router.put("/{capital_id}", response_model=CapitalResponse)
-def update_capital(capital_id: int, capital: CapitalCreate, db: Session = Depends(get_db)):
-    """
-    Update an existing capital.
-    
-    Args:
-        capital_id: ID of capital to update
-        capital: New capital data
-        
-    Returns:
-        Updated capital
-        
-    Raises:
-        HTTPException: 404 if capital not found
-    """
+def update_capital(capital_id: int, capital: CapitalUpdate, db: Session = Depends(get_db)):
     db_capital = db.query(Capital).filter(Capital.id == capital_id).first()
     if not db_capital:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Capital with ID {capital_id} not found"
         )
-    
-    db_capital.name = capital.name
-    db_capital.country = capital.country
-    db_capital.latitude = capital.latitude
-    db_capital.longitude = capital.longitude
-    db_capital.remarks = capital.remarks
-    
+    if capital.name is not None: db_capital.name = capital.name
+    if capital.country is not None: db_capital.country = capital.country
+    if capital.latitude is not None: db_capital.latitude = capital.latitude
+    if capital.longitude is not None: db_capital.longitude = capital.longitude
+    if capital.remarks is not None: db_capital.remarks = capital.remarks
+    if capital.active is not None: db_capital.active = capital.active
     db.commit()
     db.refresh(db_capital)
-    return db_capital
+    return db_capital,
 
 @router.delete("/{capital_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_capital(capital_id: int, db: Session = Depends(get_db)):
