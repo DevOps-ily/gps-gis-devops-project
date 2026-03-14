@@ -15,3 +15,14 @@ print('Done!')
 "
 
 kubectl exec -it deployment/backend -- python /app/database/seed_missing.py
+
+cat > /tmp/fix_db.py << 'EOF'
+from app.database import engine
+from sqlalchemy import text
+with engine.connect() as conn:
+    conn.execute(text('ALTER TABLE capitals ADD COLUMN IF NOT EXISTS active BOOLEAN DEFAULT TRUE'))
+    conn.commit()
+print('Done!')
+EOF
+kubectl cp /tmp/fix_db.py backend-68d646bb84-zp97g:/app/fix_db.py
+kubectl exec -it backend-68d646bb84-zp97g -- python /app/fix_db.py
