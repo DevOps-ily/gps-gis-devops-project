@@ -6,6 +6,7 @@ Defines the structure of tables in the database.
 from sqlalchemy import Column, Integer, String, Float, DateTime, Text
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
+from sqlalchemy import Column, Integer, String, Float, DateTime, Text, Boolean
 
 # Base class for all models
 Base = declarative_base()
@@ -22,8 +23,10 @@ class Capital(Base):
         country: Country name
         latitude: GPS latitude coordinate
         longitude: GPS longitude coordinate
-        remarks: Additional information (e.g., "Island", "Mainland", "Asia")
-        created_at: Timestamp when record was created
+        remarks = Column(Text, nullable=True)
+        active = Column(Boolean, nullable=False, default=True)  # ADD THIS LINE
+        created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+       
     """
     
     __tablename__ = "capitals"
@@ -45,6 +48,7 @@ class Capital(Base):
         return {
             "id": self.id,
             "name": self.name,
+            "active": self.active,
             "country": self.country,
             "latitude": self.latitude,
             "longitude": self.longitude,
