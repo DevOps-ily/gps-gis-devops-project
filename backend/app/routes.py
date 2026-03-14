@@ -37,11 +37,20 @@ class CapitalResponse(BaseModel):
     latitude: float
     longitude: float
     remarks: str = None
-    created_at: datetime
     active: bool = true
+    created_at: datetime
+
+class CapitalUpdate(BaseModel):
+    """Schema for partial update - all fields optional."""
+    name: str = None
+    country: str = None
+    latitude: float = None
+    longitude: float = None
+    remarks: str = None
+    active: bool = None
     
-    class Config:
-        from_attributes = True  # For SQLAlchemy compatibility
+class Config:
+    from_attributes = True  # For SQLAlchemy compatibility
 
 # Routes
 
@@ -129,7 +138,7 @@ def update_capital(capital_id: int, capital: CapitalUpdate, db: Session = Depend
     if capital.active is not None: db_capital.active = capital.active
     db.commit()
     db.refresh(db_capital)
-    return db_capital,
+    return db_capital
 
 @router.delete("/{capital_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_capital(capital_id: int, db: Session = Depends(get_db)):
