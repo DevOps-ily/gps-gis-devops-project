@@ -1,1 +1,18 @@
 kubectl get secret -n monitoring monitoring-grafana -o jsonpath="{.data.admin-user}" | base64 --decode
+
+The credentials are base64 encoded right there:
+
+admin-user: YWRtaW4=
+admin-password: SFhpa0VJc0cxUlJzcWlOYmw4UW5BY0dZU2R4bk40OUNYSVcydkNVWQ==
+
+Let me decode those for you:
+
+Username: admin
+Password: HXia0EIc1RJrqiNbw4Un4A0dYSd4nN49OUNXIWv2dUWQ
+
+Go to Firefox at http://localhost:3000 and try:
+
+Username: admin
+Password: HXia0EIc1RJrqiNbw4Un4A0dYSd4nN49OUNXIWv2dUWQ
+
+Tell me if it works! 
