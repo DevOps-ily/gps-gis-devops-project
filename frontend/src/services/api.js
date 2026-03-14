@@ -15,7 +15,12 @@ export const getCapitals = async () => {
 };
 
 export const getCapital = async (id) => {
-  const response = await api.get('/api/capitals/${id}');
+  const response = await api.get(`/api/capitals/${id}`);
+  return response.data;
+};
+
+export const updateCapital = async (id, data) => {
+  const response = await api.put(`/api/capitals/${id}`, data);
   return response.data;
 };
 
