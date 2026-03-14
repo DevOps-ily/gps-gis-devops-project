@@ -71,5 +71,22 @@ pytest tests/ -v
 ```
 7/7 tests passing ✅
 
+
+## 🗺️ Future Roadmap
+
+### Coming Next
+| Enhancement | Description |
+|-------------|-------------|
+| **Argo CD** | Full GitOps CD pipeline with auto-sync from Git |
+| **Helm Charts** | Package Kubernetes manifests for reusable deployments |
+| **ConfigMaps & Secrets** | Separate configuration from code, no hardcoded values |
+| **Grafana + Prometheus** | Real-time monitoring dashboards and alerting |
+| **Image Scanning** | Trivy security scanning integrated into Jenkins pipeline |
+| **RBAC** | Role-based access control with least-privilege principles |
+| **Network Policies** | Pod-level network security and traffic control |
+
+> *"A good DevOps engineer never stops improving the pipeline."*
+
+
 ## 👤 Author
 **DevOps-ily** — Built from scratch in under 2 weeks, under missile attacks, because nothing stops a DevOps engineer. 加油! 💙
