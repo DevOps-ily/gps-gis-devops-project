@@ -90,9 +90,6 @@ pytest tests/ -v
 | Enhancement | Description |
 |-------------|-------------|
 | **Argo CD** | Full GitOps CD pipeline with auto-sync from Git |
-| **Helm Charts** | Package Kubernetes manifests for reusable deployments |
-| **ConfigMaps & Secrets** | Separate configuration from code, no hardcoded values |
-| **Grafana + Prometheus** | Real-time monitoring dashboards and alerting |
 | **Image Scanning** | Trivy security scanning integrated into Jenkins pipeline |
 | **RBAC** | Role-based access control with least-privilege principles |
 | **Network Policies** | Pod-level network security and traffic control |
