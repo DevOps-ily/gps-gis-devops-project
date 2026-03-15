@@ -31,6 +31,8 @@ A full-stack GPS/GIS application tracking capital cities and geographical points
 ### Jenkins — CI/CD Pipeline
 ![Jenkins](screenshots/Jenkins_070_Pipeline%20Overview_Green.png)
 
+### Trivy — Security Scan
+![Trivy](screenshots/Trivy_07_Scan%20OK.png)
 
 ## 🛠️ Tech Stack
 
@@ -45,6 +47,7 @@ A full-stack GPS/GIS application tracking capital cities and geographical points
 | Infrastructure as Code | Terraform |
 | GitOps | Argo CD |
 | Monitoring | Prometheus + Grafana (Helm) |
+| Security | Trivy Image Scanning |
 
 ## 📊 Monitoring
 
@@ -61,6 +64,7 @@ Jenkins runs in Docker, executing a 3-stage pipeline on every build:
 - **Checkout** — pulls latest code from GitHub
 - **Test** — runs pytest via Docker (3 DB-independent tests)  
 - **Build** — builds gps-backend and gps-frontend Docker images
+- **Trivy Scan** — scans images for HIGH/CRITICAL vulnerabilities
 
 Access Jenkins:
 ```bash
@@ -136,7 +140,6 @@ pytest tests/ -v
 ### Coming Next
 | Enhancement | Description |
 |-------------|-------------|
-| **Image Scanning** | Trivy security scanning integrated into Jenkins pipeline |
 | **RBAC** | Role-based access control with least-privilege principles |
 | **Network Policies** | Pod-level network security and traffic control |
 
