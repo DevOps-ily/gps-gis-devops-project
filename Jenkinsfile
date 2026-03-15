@@ -25,5 +25,26 @@ pipeline {
                 '''
             }
         }
+        stage('Trivy Scan') {
+            steps {
+                echo 'Scanning Docker images for vulnerabilities...'
+                sh '''
+                    docker run --rm \
+                        -v /var/run/docker.sock:/var/run/docker.sock \
+                        aquasec/trivy:latest image \
+                        --exit-code 0 \
+                        --severity HIGH,CRITICAL \
+                        --format table \
+                        gps-backend:latest
+                    docker run --rm \
+                        -v /var/run/docker.sock:/var/run/docker.sock \
+                        aquasec/trivy:latest image \
+                        --exit-code 0 \
+                        --severity HIGH,CRITICAL \
+                        --format table \
+                        gps-frontend:latest
+                '''
+            }
+        }
     }
 }
