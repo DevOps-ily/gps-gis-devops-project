@@ -25,6 +25,11 @@ A full-stack GPS/GIS application tracking capital cities and geographical points
 ### AWS Deployment
 ![AWS](screenshots/sample_aws_01.png)
 
+### Argo CD — GitOps Dashboard
+![Argo CD](screenshots/Argo%20CD_02_Healthy%20%E2%99%A5.png)
+
+
+
 
 ## 🛠️ Tech Stack
 
@@ -37,6 +42,8 @@ A full-stack GPS/GIS application tracking capital cities and geographical points
 | Orchestration | Kubernetes (minikube + AWS EKS) |
 | Cloud | AWS EKS + ECR |
 | Infrastructure as Code | Terraform |
+| GitOps | Argo CD |
+| Monitoring | Prometheus + Grafana (Helm) |
 
 ## 📊 Monitoring
 
@@ -47,14 +54,27 @@ kubectl port-forward -n monitoring svc/monitoring-grafana 3000:80
 # Open http://localhost:3000
 ```
 
-Commit with:
+## 🔄 GitOps / Argo CD
 
+Argo CD deployed to Kubernetes, watching the `kubernetes/` folder in this repo.
+Any push to `main` automatically syncs the live cluster — true GitOps. 🔄
+
+Access Argo CD dashboard:
+```bash
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+# Open https://localhost:8080
+# Username: admin
+```
 
 ## 🏗️ Architecture
 ```
 Developer → GitHub → Jenkins CI/CD → Docker Images → Kubernetes → AWS EKS
-                                          ↓
-                              React Frontend + FastAPI Backend + PostgreSQL
+                          ↓
+                      Argo CD (GitOps auto-sync)
+                          ↓
+          React Frontend + FastAPI Backend + PostgreSQL
+                          ↓
+              Prometheus + Grafana (Monitoring)
 ```
 
 
@@ -96,12 +116,12 @@ pytest tests/ -v
 7/7 tests passing ✅
 
 
+
 ## 🗺️ Future Roadmap
 
 ### Coming Next
 | Enhancement | Description |
 |-------------|-------------|
-| **Argo CD** | Full GitOps CD pipeline with auto-sync from Git |
 | **Image Scanning** | Trivy security scanning integrated into Jenkins pipeline |
 | **RBAC** | Role-based access control with least-privilege principles |
 | **Network Policies** | Pod-level network security and traffic control |
