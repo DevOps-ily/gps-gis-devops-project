@@ -28,7 +28,8 @@ A full-stack GPS/GIS application tracking capital cities and geographical points
 ### Argo CD — GitOps Dashboard
 ![Argo CD](screenshots/Argo%20CD_02_Healthy%20%E2%99%A5.png)
 
-
+### Jenkins — CI/CD Pipeline
+![Jenkins](screenshots/Jenkins_070_Pipeline%20Overview_Green.png)
 
 
 ## 🛠️ Tech Stack
@@ -52,6 +53,19 @@ Access Grafana dashboard:
 ```bash
 kubectl port-forward -n monitoring svc/monitoring-grafana 3000:80
 # Open http://localhost:3000
+```
+
+## ⚙️ CI/CD — Jenkins
+
+Jenkins runs in Docker, executing a 3-stage pipeline on every build:
+- **Checkout** — pulls latest code from GitHub
+- **Test** — runs pytest via Docker (3 DB-independent tests)  
+- **Build** — builds gps-backend and gps-frontend Docker images
+
+Access Jenkins:
+```bash
+docker start jenkins
+# Open http://localhost:8090
 ```
 
 ## 🔄 GitOps / Argo CD
