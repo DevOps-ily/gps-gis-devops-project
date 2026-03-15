@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gps-gis-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/DevOps-ily/gps-gis-devops-project
+    targetRevision: HEAD
+    path: kubernetes
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
